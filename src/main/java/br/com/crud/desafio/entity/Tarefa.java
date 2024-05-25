@@ -13,7 +13,7 @@ import br.com.crud.desafio.enums.PrioridadeEnum;
 public class Tarefa extends BaseEntity{
 
 	/**
-	 * Teste de subida para o git
+	 * 
 	 */
 	private static final long serialVersionUID = -5131878205694939108L;
 	
