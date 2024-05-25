@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+	
+	<head>
+		<title><ui:insert name="paginaLogadaUsuario">Página Logada</ui:insert></title>
+	</head>
+	<body>
+		<f:view>
+			<h:form id="paginaLogada">
+				Seja Bem Vindo ao sistema de projetos, usuário!<br/>
+				Selecione as opções abaixo que deseje realizar no sistema:<br/>
+				<h:button value="Cadastrar Projeto" outcome="cadastrarProjeto" ></h:button><br/>
+				<h:button value="Listar Projetos" outcome="listarProjetos" ></h:button><br/>
+				<h:button value="Cadastrar Tarefa" outcome="cadastrarTarefa" ></h:button><br/>
+				<h:button value="Listar Tarefas" outcome="listarTarefas" ></h:button><br/>
+				
+			</h:form>
+		</f:view>
+	</body>
+	
+</html>

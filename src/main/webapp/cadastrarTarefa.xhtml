@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+	
+	<head>
+		<title><ui:insert name="cadastrarTarefaUsuario">Cadastrar Nova Tarefa</ui:insert></title>
+	</head>
+	<body>
+		<f:view>
+			<h:form id="cadastrarProjeto">
+				Preencha os campos abaixo para cadastrar nova tarefa: <br/>
+				<h:inputText value="Titulo" /><br/>
+				<h:inputText value="Descricao" /><br/>
+				<h:inputText value="Prioridade" /><br/>
+				<h:inputText value="Estimativa de Horas" /><br/>
+				<h:inputText value="Projeto" /><br/>
+				<h:button value="Cadastrar" outcome="listarTarefas" ></h:button><br/>
+				<h:button value="Voltar" outcome="paginalogada" ></h:button><br/>
+				
+			</h:form>
+		</f:view>
+	</body>
+	
+</html>

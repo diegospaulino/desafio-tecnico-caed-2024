@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+	
+	<head>
+		<title><ui:insert name="listarTarefasUsuario">Listagem de Tarefas</ui:insert></title>
+	</head>
+	<body>
+		<f:view>
+			<h:form id="listagemTarefa">
+				Abaixo a listagem com todas das tarefas cadastradas: <br/>
+				<h:inputText value="Titulo" />
+				<h:inputText value="Projeto" />
+				<h:button value="Visualisar Dados" outcome="cadastrarTarefa"></h:button>
+				<h:button value="Alterar" outcome="cadastrarTarefa"></h:button>
+				<h:button value="Excluir"></h:button><br/>
+				<h:button value="Voltar" outcome="paginalogada" ></h:button><br/>
+				
+			</h:form>
+		</f:view>
+	</body>
+	
+</html>

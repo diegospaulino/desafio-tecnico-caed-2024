@@ -7,10 +7,20 @@
 	xmlns:f="http://java.sun.com/jsf/core">
 	
 	<head>
-		<title><ui:insert name="title">Exemplo</ui:insert></title>
+		<title><ui:insert name="title">Página Inicial</ui:insert></title>
 	</head>
 	<body>
-		<h:commandButton value="Meu botão" />
+		<f:view>
+			<h:form id="paginaInicial">
+				Seja Bem Vindo ao sistema de projetos
+				<br/>
+				Faça o login abaixo para poder acessá-lo:
+				<br/>
+				<h:inputText value="Login" /><br/>
+				<h:inputText value="Senha" /><br/>
+				<h:button value="Login" outcome="paginalogada" />
+			</h:form>
+		</f:view>
 	</body>
 	
 </html>
