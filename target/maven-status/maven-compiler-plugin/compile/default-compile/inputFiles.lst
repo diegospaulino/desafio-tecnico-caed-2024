@@ -1,6 +1,11 @@
-C:\Users\dgopa\Downloads\eclipse-jee-2024-03-R-win32-x86_64\desafio\src\main\java\br\com\crud\desafio\dao\ProjetoDao.java
-C:\Users\dgopa\Downloads\eclipse-jee-2024-03-R-win32-x86_64\desafio\src\main\java\br\com\crud\desafio\utils\HibernateUtil.java
-C:\Users\dgopa\Downloads\eclipse-jee-2024-03-R-win32-x86_64\desafio\src\main\java\br\com\crud\desafio\entity\BaseEntity.java
-C:\Users\dgopa\Downloads\eclipse-jee-2024-03-R-win32-x86_64\desafio\src\main\java\br\com\crud\desafio\entity\Tarefa.java
-C:\Users\dgopa\Downloads\eclipse-jee-2024-03-R-win32-x86_64\desafio\src\main\java\br\com\crud\desafio\enums\PrioridadeEnum.java
-C:\Users\dgopa\Downloads\eclipse-jee-2024-03-R-win32-x86_64\desafio\src\main\java\br\com\crud\desafio\entity\Projeto.java
+C:\Users\carlos.henriques\eclipse-workspace\desafio-tecnico-caed-2024\src\main\java\br\com\crud\desafio\dao\ProjetoDao.java
+C:\Users\carlos.henriques\eclipse-workspace\desafio-tecnico-caed-2024\src\main\java\br\com\crud\desafio\app\App.java
+C:\Users\carlos.henriques\eclipse-workspace\desafio-tecnico-caed-2024\src\main\java\br\com\crud\desafio\dao\TarefaDao.java
+C:\Users\carlos.henriques\eclipse-workspace\desafio-tecnico-caed-2024\src\main\java\br\com\crud\desafio\dao\GenericDao.java
+C:\Users\carlos.henriques\eclipse-workspace\desafio-tecnico-caed-2024\src\main\java\br\com\crud\desafio\dao\GenericDaoImpl.java
+C:\Users\carlos.henriques\eclipse-workspace\desafio-tecnico-caed-2024\src\main\java\br\com\crud\desafio\entity\BaseEntity.java
+C:\Users\carlos.henriques\eclipse-workspace\desafio-tecnico-caed-2024\src\main\java\br\com\crud\desafio\entity\Projeto.java
+C:\Users\carlos.henriques\eclipse-workspace\desafio-tecnico-caed-2024\src\main\java\br\com\crud\desafio\entity\Tarefa.java
+C:\Users\carlos.henriques\eclipse-workspace\desafio-tecnico-caed-2024\src\main\java\br\com\crud\desafio\dao\ProjetoDaoImpl.java
+C:\Users\carlos.henriques\eclipse-workspace\desafio-tecnico-caed-2024\src\main\java\br\com\crud\desafio\dao\TarefaDaoImpl.java
+C:\Users\carlos.henriques\eclipse-workspace\desafio-tecnico-caed-2024\src\main\java\br\com\crud\desafio\enums\PrioridadeEnum.java
