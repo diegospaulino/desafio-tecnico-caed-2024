@@ -16,7 +16,7 @@ public class testTarefaDao {
 	private TarefaDao tarefaDao;
 	private Integer id = 1;
 	
-	public void setProjetoDao(TarefaDao tarefaDao) {
+	public void setTarefaDao(TarefaDao tarefaDao) {
 		this.tarefaDao = tarefaDao;
 	}
 	
