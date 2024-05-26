@@ -5,8 +5,13 @@ import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
+@Transactional(readOnly=true, propagation=Propagation.REQUIRED)
 public class GenericDaoImpl<T, ID extends Serializable> implements GenericDao<T, ID>{
 	
 	private EntityManager entityManager;
@@ -16,6 +21,7 @@ public class GenericDaoImpl<T, ID extends Serializable> implements GenericDao<T,
 		return this.objectClass;
 	}
 	
+	@PersistenceContext
 	public void setEntityManager(EntityManager em) {
 		this.entityManager = em;
 	}
@@ -33,11 +39,13 @@ public class GenericDaoImpl<T, ID extends Serializable> implements GenericDao<T,
 		this.objectClass = (Class<T>)((ParameterizedType)getClass().getGenericSuperclass()).getActualTypeArguments()[0];
 	}
 	
+	@Transactional(readOnly=false, propagation=Propagation.REQUIRED)
 	public T update(T object) {
 		getEntityManager().merge(object);
 		return object;
 	}
 	
+	@Transactional(readOnly=false, propagation=Propagation.REQUIRED)
 	public void delete(T object) {
 		object = getEntityManager().merge(object);
 		getEntityManager().remove(object);
@@ -47,6 +55,7 @@ public class GenericDaoImpl<T, ID extends Serializable> implements GenericDao<T,
 		return (T) getEntityManager().find(objectClass, id);
 	}
 	
+	@Transactional(readOnly=false, propagation=Propagation.REQUIRED)
 	public T save(T object) {
 		getEntityManager().clear();
 		getEntityManager().persist(object);

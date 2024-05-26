@@ -13,13 +13,10 @@
 		<f:view>
 			<h:form id="cadastrarProjeto">
 				Preencha os campos abaixo para cadastrar novo projeto: <br/>
-				<h:inputText value="Titulo" /><br/>
-				<h:inputText value="Descricao" /><br/>
-				<h:inputText value="Data de Inicio" /><br/>
-				<h:inputText value="Tarefa" /><br/>
-				<h:button value="Cadastrar" outcome="listarProjetos" ></h:button><br/>
-				<h:button value="Voltar" outcome="paginalogada" ></h:button><br/>
-				
+				Título: <h:inputText label="titulo" value="#{projeto.titulo}" required="true" requiredMessage="*"/><br/>
+				Descrição: <h:inputText label="descricao" value="#{projeto.descricao}" required="true" requiredMessage="*"/><br/>
+				<h:commandButton action="#{projetoController.salvarProjeto}" value="Salvar"   /><br/>
+				<h:button value="Voltar" action="cancelar" immediate="true" outcome="paginalogada" ></h:button><br/>
 			</h:form>
 		</f:view>
 	</body>

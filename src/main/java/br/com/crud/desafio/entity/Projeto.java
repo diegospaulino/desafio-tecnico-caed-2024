@@ -9,6 +9,9 @@ import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.springframework.stereotype.Component;
+
+@Component
 @Entity
 @Table(name = "Projeto")
 public class Projeto extends BaseEntity {
@@ -50,7 +53,7 @@ public class Projeto extends BaseEntity {
 		return dataInicio;
 	}
 
-	public void setPrioridade(Date dataInicio) {
+	public void setDataInicio(Date dataInicio) {
 		this.dataInicio = dataInicio;
 	}
 
@@ -61,7 +64,4 @@ public class Projeto extends BaseEntity {
 	public void setTarefas(List<Tarefa> tarefas) {
 		this.tarefas = tarefas;
 	}
-	
-	
-
 }

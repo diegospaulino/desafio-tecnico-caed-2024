@@ -13,12 +13,44 @@
 		<f:view>
 			<h:form id="listagemProjeto">
 				Abaixo a listagem com todos os projetos cadastrados: <br/>
-				<h:inputText value="Titulo" />
-				<h:button value="Visualisar Dados" outcome="cadastrarProjeto"></h:button>
-				<h:button value="Alterar" outcome="cadastrarProjeto"></h:button>
-				<h:button value="Excluir"></h:button><br/>
-				<h:button value="Voltar" outcome="paginalogada" ></h:button><br/>
-				
+				<ui:define name="formProjetos">
+					<div id="formulario">
+						<h:messages />
+						<h:dataTable border="1" id="projetos" var="projeto" value="#{projetoController.getAll}"
+									style="width: 396px">
+							<h:column id="column1"> 
+								<h:outputText value="#{projeto.titulo}" />
+								<f:facet name="header">
+									<h:outputText value="Título" />
+								</f:facet>
+							</h:column>	
+							<h:column id="column2">
+								<h:outputText value="#{projeto.descricao}" />
+								<f:facet name="header">
+									<h:outputText value="Descrição" />
+								</f:facet>
+							</h:column>
+							<h:column id="column3">
+								<h:outputText value="#{projeto.dataInicio}" />
+								<f:facet name="header">
+									<h:outputText value="Data de Início" />
+								</f:facet>
+							</h:column>	
+							<h:column>
+								<h:commandLink action="#{projetoController.editProjeto}" value="Atualizar" />
+								<f:facet name="header">
+									<h:outputText value="Atualizar" />
+								</f:facet>	
+							</h:column>
+							<h:column>
+								<h:commandLink action="#{projetoController.excluirProjeto}" value="Excluir" />
+								<f:facet name="header">
+									<h:outputText value="Excluir" />
+								</f:facet>	
+							</h:column>
+						</h:dataTable>
+					</div>
+				</ui:define>
 			</h:form>
 		</f:view>
 	</body>
