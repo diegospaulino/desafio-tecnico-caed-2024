@@ -10,7 +10,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "tbl_projeto")
+@Table(name = "Projeto")
 public class Projeto extends BaseEntity {
 
 	/**
@@ -24,7 +24,7 @@ public class Projeto extends BaseEntity {
 	@Column
 	private String descricao;
 	
-	@Column
+	@Column(name="data_inicio")
 	private Date dataInicio;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "projeto")

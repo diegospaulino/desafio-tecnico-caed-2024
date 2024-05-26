@@ -9,7 +9,7 @@ import br.com.crud.desafio.enums.PrioridadeEnum;
 
 
 @Entity
-@Table(name = "tbl_tarefa")
+@Table(name = "Tarefa")
 public class Tarefa extends BaseEntity{
 
 	/**
@@ -26,7 +26,7 @@ public class Tarefa extends BaseEntity{
 	@Column
 	private PrioridadeEnum prioridade;
 	
-	@Column
+	@Column(name="estimativa_horas")
 	private Integer estimavaHoras;
 	
 	@ManyToOne
