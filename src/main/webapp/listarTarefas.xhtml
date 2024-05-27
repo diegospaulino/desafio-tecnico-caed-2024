@@ -5,23 +5,47 @@
       xmlns:ui="http://java.sun.com/jsf/facelets" 
       xmlns:a4j="http://richfaces.org/a4j" 
       xmlns:rich="http://richfaces.org/rich"> 
+      
+	<ui:composition template="/application.xhtml">
 	
-	<head>
-		<title><ui:insert name="listarTarefasUsuario">Listagem de Tarefas</ui:insert></title>
-	</head>
-	<body>
-		<f:view>
-			<h:form id="listagemTarefa">
-				Abaixo a listagem com todas das tarefas cadastradas: <br/>
-				<h:inputText value="Titulo" />
-				<h:inputText value="Projeto" />
-				<h:button value="Visualisar Dados" outcome="cadastrarTarefa"></h:button>
-				<h:button value="Alterar" outcome="cadastrarTarefa"></h:button>
-				<h:button value="Excluir"></h:button><br/>
-				<h:button value="Voltar" outcome="paginalogada" ></h:button><br/>
-				
+		<ui:define name="title">Listagem de Tarefas</ui:define>
+		
+		<ui:define name="content">
+			<h3>Abaixo a listagem com todas das tarefas cadastradas: </h3><br/>
+			
+			<h:form rendered="#{not empty tarefaController.tarefas}">
+				<h:dataTable border="1" var="trf" value="#{tarefaController.tarefas}" style="width: 396px">
+					<h:column id="column1"> 
+						<f:facet name="header">Título</f:facet>
+						#{trf.titulo}
+					</h:column>	
+					<h:column id="column2">
+						<f:facet name="header">Descrição</f:facet>
+						#{trf.descricao}
+					</h:column>
+					<h:column id="column3">
+						<f:facet name="header">Prioridade</f:facet>
+						#{trf.prioridade}
+					</h:column>
+					<h:column id="column4">
+						<f:facet name="header">Estimativa de Horas</f:facet>
+						#{trf.estimativaHoras}
+					</h:column>
+					<h:column id="column5">
+						<f:facet name="header">Projeto</f:facet>
+						#{trf.projeto.titulo}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Atualizar</f:facet>	
+						#{tarefaController.editTarefa(trf.id)}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Excluir</f:facet>
+						#{tarefaController.excluirTarefa(trf.id)}	
+					</h:column>
+				</h:dataTable>
+			
 			</h:form>
-		</f:view>
-	</body>
-	
+		</ui:define>
+	</ui:composition>  
 </html>

@@ -1,25 +1,40 @@
 package br.com.crud.desafio.controller;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 import br.com.crud.desafio.dao.GenericDao;
 import br.com.crud.desafio.entity.Projeto;
 
-@Controller("projetoController")
-@Scope("session")
-public class ProjetoController {
+@ManagedBean
+@ViewScoped
+public class ProjetoController extends SpringBeanAutowiringSupport implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private Projeto projeto;
+	private List<Projeto> projetos;
 	
-	@Resource
+	@Autowired
 	private GenericDao<Projeto, Integer> projetoDao;
+	
+	public ProjetoController() {
+		projeto = new Projeto();
+	}
 
 	public ProjetoController(Projeto projeto, GenericDao<Projeto, Integer> projetoDao) {
 		super();
@@ -32,41 +47,58 @@ public class ProjetoController {
 		return "formProjeto";
 	}
 	
-	public List<Projeto> listaTodosProjetos() {
-		List<Projeto> projetos = new ArrayList<>();
-		projetos = projetoDao.getAll();
-		return projetos;
-	}
-	
-	public Projeto getProjeto(Integer id) {
-		Projeto prj = projetoDao.getById(id);
+	public Projeto getProjeto(Projeto projeto) {
+		Projeto prj = projetoDao.getById(projeto.getId());
 		return prj;
 	}
 	
-	public String editProjeto(Integer id) {
-		projeto = getProjeto(id);
-		return "formProjeto";
+	public void editProjeto(Projeto projeto) {
+		Projeto prj = new Projeto(); 
+		prj = getProjeto(projeto);
 	}
 	
-	public String salvarProjeto() {
+	public void salvarProjeto() {
 		Calendar dataCorrente = Calendar.getInstance();
-		if(projeto.getId() == null) {
-			projeto.setCreateDate(dataCorrente.getTime());
-			projeto.setDataInicio(dataCorrente.getTime());
-			projetoDao.save(projeto);
-		}
-		else {
-			projeto.setUpdateDate(dataCorrente.getTime());
-			projetoDao.update(projeto);
-		}
-		
-		return "sucesso";
+		Projeto prj = new Projeto();
+		prj.setCreateDate(dataCorrente.getTime());
+		prj.setDataInicio(dataCorrente.getTime());
+		prj.setTitulo(projeto.getTitulo());
+		prj.setDescricao(projeto.getDescricao());
+		projetoDao.save(prj);
 	}
 	
-	public String excluirProjeto(Integer id) {
-		Projeto projeto = getProjeto(id);
-		projetoDao.delete(projeto);
-		
-		return "listaProjetos";
+	public void atualizarProjeto(Projeto projeto) {
+		Calendar dataCorrente = Calendar.getInstance();
+		Projeto prj = getProjeto(projeto);
+		prj.setTitulo(projeto.getTitulo());
+		prj.setDescricao(projeto.getDescricao());
+		prj.setCreateDate(projeto.getCreateDate());
+		prj.setDataInicio(projeto.getDataInicio());
+		prj.setTarefas(projeto.getTarefas());
+		prj.setUpdateDate(dataCorrente.getTime());
+		projetoDao.update(prj);
+	}
+	
+	public void excluirProjeto(Projeto projeto) {
+		Projeto prj = getProjeto(projeto);
+		projetoDao.delete(prj);
+	}
+	
+	public List<Projeto> getProjetos() {
+		projetos = new ArrayList<Projeto>();
+		projetos.addAll(projetoDao.getAll());
+		return projetos;
+	}
+	
+	public void setProjetos(List<Projeto> projetos) {
+		this.projetos = projetos;
+	}
+	
+	public Projeto getProjeto() {
+		return projeto;
+	}
+	
+	public void setProjeto(Projeto projeto) {
+		this.projeto = projeto;
 	}
 }

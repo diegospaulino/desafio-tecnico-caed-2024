@@ -14,7 +14,7 @@ import br.com.crud.desafio.entity.Projeto;
 public class testProjetoDao {
 	
 	private ProjetoDao projetoDao;
-	private Integer id = 1;
+	private Long id = 1L;
 	
 	public void setProjetoDao(ProjetoDao projetoDao) {
 		this.projetoDao = projetoDao;

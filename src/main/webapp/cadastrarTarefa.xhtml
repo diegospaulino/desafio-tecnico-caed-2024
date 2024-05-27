@@ -5,16 +5,16 @@
       xmlns:ui="http://java.sun.com/jsf/facelets" 
       xmlns:a4j="http://richfaces.org/a4j" 
       xmlns:rich="http://richfaces.org/rich"> 
-	
-	<head>
-		<title><ui:insert name="cadastrarTarefaUsuario">Cadastrar Nova Tarefa</ui:insert></title>
-	</head>
-	<body>
-		<f:view>
-			<h:form id="cadastrarTarefa">
+      
+      <ui:composition template="/application.xhtml">
+      
+      <ui:define name="title">Cadastrar Nova Tarefa</ui:define>
+      
+      <ui:define name="content">
+      	<h:form id="cadastrarTarefa">
 				Preencha os campos abaixo para cadastrar nova tarefa: <br/>
-				Título: <h:inputText label="titulo" value="#{tarefa.titulo}" required="true" requiredMessage="*"/><br/>
-				Descrição: <h:inputText label="descricao" value="#{tarefa.descricao}" required="true" requiredMessage="*"/><br/>
+				Título: <h:inputText label="titulo" value="#{tarefaController.tarefa.titulo}" required="true" requiredMessage="*"/><br/>
+				Descrição: <h:inputText label="descricao" value="#{tarefaController.tarefa.descricao}" required="true" requiredMessage="*"/><br/>
 				Prioridade: <h:selectOneMenu value="#{tarefa.prioridade}">
 								<f:selectItem itemValue="Muito Alta" />
 								<f:selectItem itemValue="Alta"  />
@@ -22,16 +22,15 @@
 								<f:selectItem itemValue="Muito Baixa"  />
 							</h:selectOneMenu>
 							<h:message for="prioridade" /><br />
-				<!-- <h:inputText label="prioridade" value="#{tarefa.prioridade}" required="true" requiredMessage="*"/><br/> -->
-				Estimativa de Horas: <h:inputText label="estimavaHoras" value="#{tarefa.estimavaHoras}" required="true" requiredMessage="*"/><br/>
+				Estimativa de Horas: <h:inputText label="estimavaHoras" value="#{tarefaController.tarefa.estimavaHoras}" required="true" requiredMessage="*"/><br/>
 				Projeto: <h:selectOneMenu value="#{projeto.id}" id="projeto">
-							<f:selectItems value="#{projetoController.listaTodosProjetos()}" />
+							<f:selectItems value="#{projetoController.projetos}" />
 						</h:selectOneMenu> 
 						<h:message for="projeto" /><br />
-				<h:commandButton action="#{tarefaController.salvarTarefa}" value="Salvar"   /><br/>
+				<h:commandButton action="#{tarefaController.salvarTarefa()}" value="Salvar"   /><br/>
 				<h:button value="Voltar" action="cancelar" immediate="true" outcome="paginalogada" ></h:button><br/>
 			</h:form>
-		</f:view>
-	</body>
-	
+      </ui:define>
+     
+      </ui:composition>
 </html>

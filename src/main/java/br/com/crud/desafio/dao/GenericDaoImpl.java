@@ -28,7 +28,7 @@ public class GenericDaoImpl<T, ID extends Serializable> implements GenericDao<T,
 	
 	protected EntityManager getEntityManager() {
 		if(entityManager == null) {
-			throw new IllegalStateException("Erro Projeto!");
+			throw new IllegalStateException("Erro em " + objectClass.getSimpleName() + "!");
 		}
 		
 		return entityManager;
@@ -41,31 +41,33 @@ public class GenericDaoImpl<T, ID extends Serializable> implements GenericDao<T,
 	
 	@Transactional(readOnly=false, propagation=Propagation.REQUIRED)
 	public T update(T object) {
-		getEntityManager().merge(object);
+		entityManager.merge(object);
 		return object;
 	}
 	
 	@Transactional(readOnly=false, propagation=Propagation.REQUIRED)
 	public void delete(T object) {
-		object = getEntityManager().merge(object);
-		getEntityManager().remove(object);
-	}
-	
-	public T getById(ID id) {
-		return (T) getEntityManager().find(objectClass, id);
+		object = entityManager.merge(object);
+		entityManager.remove(object);
 	}
 	
 	@Transactional(readOnly=false, propagation=Propagation.REQUIRED)
 	public T save(T object) {
-		getEntityManager().clear();
-		getEntityManager().persist(object);
+		entityManager.clear();
+		entityManager.persist(object);
+		entityManager.close();
 		return object;
 	}
 	
 	@SuppressWarnings("unchecked")
 	public List<T> getAll() {
-		String query = "SELECT obj FROM " + objectClass.getSimpleName() + " obj";
-		Query q = getEntityManager().createQuery(query);
+		String hql = "FROM " + objectClass.getSimpleName();
+		Query q = entityManager.createQuery(hql);
 		return q.getResultList();
+	}
+
+	@Override
+	public T getById(Long id) {
+		return (T) entityManager.find(objectClass, id);
 	}
 }

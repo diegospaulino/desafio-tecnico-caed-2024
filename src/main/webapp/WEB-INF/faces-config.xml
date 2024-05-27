@@ -14,5 +14,12 @@
 		<managed-bean-class>br.com.crud.desafio.controller.ProjetoController</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
+	
+	<managed-bean>
+		<managed-bean-name>tarefaController</managed-bean-name>
+		<managed-bean-class>br.com.crud.desafio.controller.TarefaController</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	
 
 </faces-config>

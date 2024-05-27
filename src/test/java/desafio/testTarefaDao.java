@@ -14,7 +14,7 @@ import br.com.crud.desafio.entity.Tarefa;
 public class testTarefaDao {
 	
 	private TarefaDao tarefaDao;
-	private Integer id = 1;
+	private Long id = 1L;
 	
 	public void setTarefaDao(TarefaDao tarefaDao) {
 		this.tarefaDao = tarefaDao;

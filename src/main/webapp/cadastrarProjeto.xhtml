@@ -6,19 +6,19 @@
       xmlns:a4j="http://richfaces.org/a4j" 
       xmlns:rich="http://richfaces.org/rich"> 
 	
-	<head>
-		<title><ui:insert name="cadastrarProjetoUsuario">Cadastrar Novo Projeto</ui:insert></title>
-	</head>
-	<body>
-		<f:view>
+	<ui:composition template="/application.xhtml">
+	
+		<ui:define name="title">Cadastrar Novo Projeto</ui:define>
+		
+		<ui:define name="content">
 			<h:form id="cadastrarProjeto">
 				Preencha os campos abaixo para cadastrar novo projeto: <br/>
-				Título: <h:inputText label="titulo" value="#{projeto.titulo}" required="true" requiredMessage="*"/><br/>
-				Descrição: <h:inputText label="descricao" value="#{projeto.descricao}" required="true" requiredMessage="*"/><br/>
-				<h:commandButton action="#{projetoController.salvarProjeto}" value="Salvar"   /><br/>
+				Título: <h:inputText label="titulo" value="#{projetoController.projeto.titulo}" required="true" requiredMessage="*"/><br/>
+				Descrição: <h:inputText label="descricao" value="#{projetoController.projeto.descricao}" required="true" requiredMessage="*"/><br/>
+				<h:commandButton action="#{projetoController.salvarProjeto()}" value="Salvar"   /><br/>
 				<h:button value="Voltar" action="cancelar" immediate="true" outcome="paginalogada" ></h:button><br/>
 			</h:form>
-		</f:view>
-	</body>
+		</ui:define>
 	
+	</ui:composition>
 </html>

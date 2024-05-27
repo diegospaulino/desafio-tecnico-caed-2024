@@ -19,7 +19,7 @@ public class Projeto extends BaseEntity {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 851995967775950283L;
+	private static final long serialVersionUID = 1L;
 	
 	@Column
 	private String titulo;

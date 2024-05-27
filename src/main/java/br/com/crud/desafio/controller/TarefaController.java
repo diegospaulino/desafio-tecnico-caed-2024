@@ -1,25 +1,40 @@
 package br.com.crud.desafio.controller;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 import br.com.crud.desafio.dao.GenericDao;
 import br.com.crud.desafio.entity.Tarefa;
 
-@Controller("tarefaController")
-@Scope("session")
-public class TarefaController {
+@ManagedBean
+@ViewScoped
+public class TarefaController extends SpringBeanAutowiringSupport implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private Tarefa tarefa;
+	private List<Tarefa> tarefas;
 	
-	@Resource
+	@Autowired
 	private GenericDao<Tarefa, Integer> tarefaDao;
+	
+	public TarefaController() {
+		tarefa = new Tarefa();
+	}
 
 	public TarefaController(Tarefa tarefa, GenericDao<Tarefa, Integer> tarefaDao) {
 		super();
@@ -32,23 +47,17 @@ public class TarefaController {
 		return "formTarefa";
 	}
 	
-	public List<Tarefa> listaTodasTarefas() {
-		List<Tarefa> tarefas = new ArrayList<>();
-		tarefas = tarefaDao.getAll();
-		return tarefas;
-	}
-	
-	public Tarefa getTarefa(Integer id) {
-		Tarefa trf = tarefaDao.getById(id);
+	public Tarefa getTarefa(Tarefa tarefa) {
+		Tarefa trf = tarefaDao.getById(tarefa.getId());
 		return trf;
 	}
 	
-	public String editTarefa(Integer id) {
-		tarefa = getTarefa(id);
-		return "formTarefa";
+	public void editTarefa(Tarefa tarefa) {
+		Tarefa trf = new Tarefa();
+		trf = getTarefa(tarefa);
 	}
 	
-	public String salvarTarefa() {
+	public void salvarTarefa() {
 		Calendar dataCorrente = Calendar.getInstance();
 		if(tarefa.getId() == null) {
 			tarefa.setCreateDate(dataCorrente.getTime());
@@ -58,14 +67,28 @@ public class TarefaController {
 			tarefa.setUpdateDate(dataCorrente.getTime());
 			tarefaDao.update(tarefa);
 		}
-		
-		return "sucesso";
 	}
 	
-	public String excluirTarefa(Integer id) {
-		Tarefa tarefa = getTarefa(id);
-		tarefaDao.delete(tarefa);
-		
-		return "listaTarefas";
+	public void excluirTarefa(Tarefa tarefa) {
+		Tarefa trf = getTarefa(tarefa);
+		tarefaDao.delete(trf);
+	}
+	
+	public List<Tarefa> getTarefas() {
+		tarefas = new ArrayList<>();
+		tarefas.addAll(tarefaDao.getAll());
+		return tarefas;
+	}
+	
+	public void setTarefas(List<Tarefa> tarefas) {
+		this.tarefas = tarefas;
+	}
+	
+	public Tarefa getTarefa() {
+		return tarefa;
+	}
+	
+	public void setTarefa(Tarefa tarefa) {
+		this.tarefa = tarefa;
 	}
 }

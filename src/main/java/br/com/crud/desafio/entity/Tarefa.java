@@ -15,7 +15,7 @@ public class Tarefa extends BaseEntity{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -5131878205694939108L;
+	private static final long serialVersionUID = 1L;
 	
 	@Column
 	private String titulo;
