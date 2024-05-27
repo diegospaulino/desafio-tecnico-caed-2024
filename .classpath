@@ -43,6 +43,8 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+<<<<<<< HEAD
+=======
 	<classpathentry kind="src" path="target/generated-sources/annotations">
 		<attributes>
 			<attribute name="optional" value="true"/>
@@ -60,5 +62,6 @@
 			<attribute name="test" value="true"/>
 		</attributes>
 	</classpathentry>
+>>>>>>> 582010bdf1358b119c4e1ebe018077ae8706ec09
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
