@@ -16,7 +16,7 @@
 				<ui:define name="formProjetos">
 					<div id="formulario">
 						<h:messages />
-						<h:dataTable border="1" id="projetos" var="projeto" value="#{projetoController.getAll}"
+						<h:dataTable border="1" id="projetos" var="projeto" value="#{projetoController.listaTodosProjetos()}"
 									style="width: 396px">
 							<h:column id="column1"> 
 								<h:outputText value="#{projeto.titulo}" />
@@ -37,13 +37,13 @@
 								</f:facet>
 							</h:column>	
 							<h:column>
-								<h:commandLink action="#{projetoController.editProjeto}" value="Atualizar" />
+								<h:commandLink action="#{projetoController.editProjeto(projeto.id)}" value="Atualizar" />
 								<f:facet name="header">
 									<h:outputText value="Atualizar" />
 								</f:facet>	
 							</h:column>
 							<h:column>
-								<h:commandLink action="#{projetoController.excluirProjeto}" value="Excluir" />
+								<h:commandLink action="#{projetoController.excluirProjeto(projeto.id)}" value="Excluir" />
 								<f:facet name="header">
 									<h:outputText value="Excluir" />
 								</f:facet>	
@@ -52,6 +52,7 @@
 					</div>
 				</ui:define>
 			</h:form>
+			<h:button value="Voltar" action="voltar" immediate="true" outcome="paginalogada" ></h:button><br/>
 		</f:view>
 	</body>
 	
