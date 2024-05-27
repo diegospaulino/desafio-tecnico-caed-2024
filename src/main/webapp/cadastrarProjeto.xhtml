@@ -1,10 +1,10 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
-          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      xmlns:a4j="http://richfaces.org/a4j" 
+      xmlns:rich="http://richfaces.org/rich"> 
 	
 	<head>
 		<title><ui:insert name="cadastrarProjetoUsuario">Cadastrar Novo Projeto</ui:insert></title>
@@ -13,13 +13,10 @@
 		<f:view>
 			<h:form id="cadastrarProjeto">
 				Preencha os campos abaixo para cadastrar novo projeto: <br/>
-				<h:inputText value="Titulo" /><br/>
-				<h:inputText value="Descricao" /><br/>
-				<h:inputText value="Data de Inicio" /><br/>
-				<h:inputText value="Tarefa" /><br/>
-				<h:button value="Cadastrar" outcome="listarProjetos" ></h:button><br/>
-				<h:button value="Voltar" outcome="paginalogada" ></h:button><br/>
-				
+				Título: <h:inputText label="titulo" value="#{projeto.titulo}" required="true" requiredMessage="*"/><br/>
+				Descrição: <h:inputText label="descricao" value="#{projeto.descricao}" required="true" requiredMessage="*"/><br/>
+				<h:commandButton action="#{projetoController.salvarProjeto}" value="Salvar"   /><br/>
+				<h:button value="Voltar" action="cancelar" immediate="true" outcome="paginalogada" ></h:button><br/>
 			</h:form>
 		</f:view>
 	</body>

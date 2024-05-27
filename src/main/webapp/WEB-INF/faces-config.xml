@@ -8,5 +8,11 @@
     <application>
 		<el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>
 	</application>
+	
+	<managed-bean>
+		<managed-bean-name>projetoController</managed-bean-name>
+		<managed-bean-class>br.com.crud.desafio.controller.ProjetoController</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
 
 </faces-config>

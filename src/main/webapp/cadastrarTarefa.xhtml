@@ -1,26 +1,35 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
-          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      xmlns:a4j="http://richfaces.org/a4j" 
+      xmlns:rich="http://richfaces.org/rich"> 
 	
 	<head>
 		<title><ui:insert name="cadastrarTarefaUsuario">Cadastrar Nova Tarefa</ui:insert></title>
 	</head>
 	<body>
 		<f:view>
-			<h:form id="cadastrarProjeto">
+			<h:form id="cadastrarTarefa">
 				Preencha os campos abaixo para cadastrar nova tarefa: <br/>
-				<h:inputText value="Titulo" /><br/>
-				<h:inputText value="Descricao" /><br/>
-				<h:inputText value="Prioridade" /><br/>
-				<h:inputText value="Estimativa de Horas" /><br/>
-				<h:inputText value="Projeto" /><br/>
-				<h:button value="Cadastrar" outcome="listarTarefas" ></h:button><br/>
-				<h:button value="Voltar" outcome="paginalogada" ></h:button><br/>
-				
+				Título: <h:inputText label="titulo" value="#{tarefa.titulo}" required="true" requiredMessage="*"/><br/>
+				Descrição: <h:inputText label="descricao" value="#{tarefa.descricao}" required="true" requiredMessage="*"/><br/>
+				Prioridade: <h:selectOneMenu value="#{tarefa.prioridade}">
+								<f:selectItem itemValue="Muito Alta" />
+								<f:selectItem itemValue="Alta"  />
+								<f:selectItem itemValue="Baixa" />
+								<f:selectItem itemValue="Muito Baixa"  />
+							</h:selectOneMenu>
+							<h:message for="prioridade" /><br />
+				<!-- <h:inputText label="prioridade" value="#{tarefa.prioridade}" required="true" requiredMessage="*"/><br/> -->
+				Estimativa de Horas: <h:inputText label="estimavaHoras" value="#{tarefa.estimavaHoras}" required="true" requiredMessage="*"/><br/>
+				Projeto: <h:selectOneMenu value="#{projeto.id}" id="projeto">
+							<f:selectItems value="#{projetoController.listaTodosProjetos()}" />
+						</h:selectOneMenu> 
+						<h:message for="projeto" /><br />
+				<h:commandButton action="#{tarefaController.salvarTarefa}" value="Salvar"   /><br/>
+				<h:button value="Voltar" action="cancelar" immediate="true" outcome="paginalogada" ></h:button><br/>
 			</h:form>
 		</f:view>
 	</body>

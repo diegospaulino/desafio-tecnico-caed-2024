@@ -9,8 +9,9 @@
 		   http://www.springframework.org/schema/context/spring-context-3.0.xsd
 		   http://www.springframework.org/schema/tx
 		   http://www.springframework.org/schema/tx/spring-tx.xsd">
-	
+		   
     <context:component-scan base-package="br.com.crud.desafio"/>
+    <context:annotation-config></context:annotation-config>
     
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
     	<property name="driverClassName" value="org.postgresql.Driver" />
@@ -55,4 +56,11 @@
 	</bean>
 	
 	<tx:annotation-driven transaction-manager="txManager" proxy-target-class="true" />
+	
+	<bean name="openEntityManagerInViewInterceptor" class="org.springframework.orm.jpa.support.OpenEntityManagerInViewInterceptor"></bean>
+	
+	<bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor"></bean>
+	
+	<bean id="projetoDao" class="br.com.crud.desafio.dao.ProjetoDaoImpl"></bean>
+	<bean id="tarefaDao" class="br.com.crud.desafio.dao.TarefaDaoImpl"></bean>
 </beans>
