@@ -12,7 +12,7 @@
 		
 			<h:form id="cadastrarProjeto" rendered="#{not empty projeto}">
 			
-				Preencha os campos abaixo para atualizar projeto: <br/>
+				Preencha os campos abaixo para atualizar projeto abaixo: <br/>
 				Título: <h:inputText value="#{projeto.titulo}" required="true" requiredMessage="*" /><br/>
 				Descrição: <h:inputText label="descricao" value="#{projeto.descricao}" required="true" requiredMessage="*"/><br/>
 				<h:commandButton action="#{projetoController.atualizarProjeto(projeto)}" value="Salvar"   /><br/>
