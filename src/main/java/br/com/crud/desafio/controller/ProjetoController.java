@@ -12,7 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 import br.com.crud.desafio.dao.ProjetoDao;
+import br.com.crud.desafio.dao.TarefaDao;
 import br.com.crud.desafio.entity.Projeto;
+import br.com.crud.desafio.entity.Tarefa;
 
 @ManagedBean
 @ViewScoped
@@ -28,6 +30,9 @@ public class ProjetoController extends SpringBeanAutowiringSupport implements Se
 	
 	@Autowired
 	private ProjetoDao projetoDao;
+	
+	@Autowired
+	private TarefaDao tarefaDao;
 	
 	public ProjetoController() {
 		projeto = new Projeto();
@@ -66,6 +71,15 @@ public class ProjetoController extends SpringBeanAutowiringSupport implements Se
 	
 	public String excluirProjeto(Projeto projeto) {
 		this.projeto.setId(projeto.getId());
+		List<Tarefa> tarefas = new ArrayList<>();
+		tarefas = tarefaDao.getAll();
+		for(Integer i = 0; i < tarefas.size(); i++) {
+			Tarefa tarefa = new Tarefa();
+			tarefa = tarefas.get(i);
+			if(tarefa.getProjeto().getId().equals(this.projeto.getId())) {
+				tarefaDao.delete(tarefa);
+			}
+		}
 		projetoDao.delete(this.projeto);
 		
 		return "listarProjetos";
