@@ -28,7 +28,7 @@
 					</h:column>
 					<h:column>
 						<f:facet name="header">Opções</f:facet>
-							<h:button action="#{projetoController.getProjeto(prj)}" outcome="cadastrarProjeto" value="Atualizar" />
+							<h:button action="#{projetoController.editProjeto(prj)}" outcome="cadastrarProjeto_edit" value="Atualizar" />
 							<h:commandButton action="#{projetoController.excluirProjeto(prj)}" value="Excluir" />
 					</h:column>
 					<h:button value="Voltar" action="voltar" immediate="true" outcome="paginalogada" ></h:button><br/>

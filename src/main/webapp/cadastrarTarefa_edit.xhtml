@@ -8,19 +8,19 @@
       
       <ui:composition template="/application.xhtml">
       
-      <ui:define name="title">Cadastrar Nova Tarefa</ui:define>
-      
+      <ui:define name="title">Atualizar Tarefa</ui:define>
       <ui:define name="content">
-      	<h:form id="cadastrarTarefa">
-      		<h3>Preencha os campos abaixo para cadastrar nova tarefa: </h3><br/>
-				Título: <h:inputText label="titulo" value="#{tarefaController.tarefa.titulo}" required="true" requiredMessage="*"/><br/>
-				Descrição: <h:inputText label="descricao" value="#{tarefaController.tarefa.descricao}" required="true" requiredMessage="*"/><br/>
-				Prioridade: <h:selectOneMenu value="#{tarefaController.tarefa.prioridade}">
+      
+      	<h:form id="cadastrarTarefa_edit" rendered="#{not empty tarefa}">
+      		Preencha os campos abaixo para cadastrar nova tarefa: <br/>
+				Título: <h:inputText label="titulo" value="#{tarefa.titulo}" required="true" requiredMessage="*"/><br/>
+				Descrição: <h:inputText label="descricao" value="#{tarefa.descricao}" required="true" requiredMessage="*"/><br/>
+				Prioridade: <h:selectOneMenu value="#{tarefa.prioridade}">
 								<f:selectItems value="#{tarefaController.listarPrioridades()}" />
 							</h:selectOneMenu>
 							<h:message for="prioridade" /><br />
-				Estimativa de Horas: <h:inputText label="estimativaHoras" value="#{tarefaController.tarefa.estimativaHoras}" required="true" requiredMessage="*"/><br/>
-				Projeto: <h:selectOneMenu value="#{tarefaController.projeto.id}" id="projeto">
+				Estimativa de Horas: <h:inputText label="estimativaHoras" value="#{tarefa.estimativaHoras}" required="true" requiredMessage="*"/><br/>
+				Projeto: <h:selectOneMenu value="#{tarefa.projeto.id}" id="projeto">
 							<f:selectItems value="#{tarefaController.listarProjetos()}" />
 						</h:selectOneMenu> 
 						<h:message for="projeto" /><br />

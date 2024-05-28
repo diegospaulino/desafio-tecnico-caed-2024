@@ -59,9 +59,10 @@ public class TarefaController extends SpringBeanAutowiringSupport implements Ser
 		return trf;
 	}
 	
-	public void editTarefa(Tarefa tarefa) {
-		Tarefa trf = new Tarefa();
-		trf = getTarefa(tarefa);
+	public String editTarefa(Tarefa tarefa) {
+		this.tarefa = new Tarefa();
+		this.tarefa = tarefaDao.getById(tarefa.getId());
+		return "cadastrarTarefa_edit";
 	}
 	
 	public void editTarefaById(Long id) {
