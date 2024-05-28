@@ -42,22 +42,18 @@ public class ProjetoController extends SpringBeanAutowiringSupport implements Se
 		this.projetoDao = projetoDao;
 	}
 	
-	public String formProjeto() {
+	public String cadastrarProjetoIndex() {
+		projeto = new Projeto();
+		return "cadastrarProjeto";
+	}
+	
+	public String editProjeto(Projeto projeto) {
 		this.projeto = new Projeto();
-		return "formProjeto";
+		this.projeto = projetoDao.getById(projeto.getId());
+		return "cadastrarProjeto_edit";
 	}
 	
-	public Projeto getProjeto(Projeto projeto) {
-		Projeto prj = projetoDao.getById(projeto.getId());
-		return prj;
-	}
-	
-	public void editProjeto(Projeto projeto) {
-		Projeto prj = new Projeto(); 
-		prj = getProjeto(projeto);
-	}
-	
-	public void salvarProjeto() {
+	public String salvarProjeto() {
 		Calendar dataCorrente = Calendar.getInstance();
 		Projeto prj = new Projeto();
 		prj.setCreateDate(dataCorrente.getTime());
@@ -65,23 +61,28 @@ public class ProjetoController extends SpringBeanAutowiringSupport implements Se
 		prj.setTitulo(projeto.getTitulo());
 		prj.setDescricao(projeto.getDescricao());
 		projetoDao.save(prj);
+		
+		return "listaProjetos";
 	}
 	
-	public void atualizarProjeto(Projeto projeto) {
+	public String atualizarProjeto(Projeto projeto) {
 		Calendar dataCorrente = Calendar.getInstance();
-		Projeto prj = getProjeto(projeto);
-		prj.setTitulo(projeto.getTitulo());
-		prj.setDescricao(projeto.getDescricao());
-		prj.setCreateDate(projeto.getCreateDate());
-		prj.setDataInicio(projeto.getDataInicio());
-		prj.setTarefas(projeto.getTarefas());
-		prj.setUpdateDate(dataCorrente.getTime());
-		projetoDao.update(prj);
+		this.projeto.setTitulo(projeto.getTitulo());
+		this.projeto.setDescricao(projeto.getDescricao());
+		this.projeto.setCreateDate(projeto.getCreateDate());
+		this.projeto.setDataInicio(projeto.getDataInicio());
+		this.projeto.setTarefas(projeto.getTarefas());
+		this.projeto.setUpdateDate(dataCorrente.getTime());
+		projetoDao.update(this.projeto);
+		
+		return "listaProjetos";
 	}
 	
-	public void excluirProjeto(Projeto projeto) {
-		Projeto prj = getProjeto(projeto);
-		projetoDao.delete(prj);
+	public String excluirProjeto(Projeto projeto) {
+		this.projeto.setId(projeto.getId());
+		projetoDao.delete(this.projeto);
+		
+		return "listaProjetos";
 	}
 	
 	public List<Projeto> getProjetos() {

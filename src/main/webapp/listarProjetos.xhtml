@@ -14,7 +14,7 @@
       	<h3>Abaixo a listagem com todos os projetos cadastrados: </h3><br/>
       	
       	<h:form rendered="#{not empty projetoController.projetos}">
-      		<h:dataTable border="1" var="prj" value="#{projetoController.projetos}" style="width: 396px">
+      		<h:dataTable border="1" var="prj" value="#{projetoController.projetos}" style="width: 600px">
 				<h:column id="column1"> 
 					<f:facet name="header">Título</f:facet>
 					#{prj.titulo}

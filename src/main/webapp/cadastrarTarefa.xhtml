@@ -15,7 +15,7 @@
 				Preencha os campos abaixo para cadastrar nova tarefa: <br/>
 				Título: <h:inputText label="titulo" value="#{tarefaController.tarefa.titulo}" required="true" requiredMessage="*"/><br/>
 				Descrição: <h:inputText label="descricao" value="#{tarefaController.tarefa.descricao}" required="true" requiredMessage="*"/><br/>
-				Prioridade: <h:selectOneMenu value="#{tarefa.prioridade}">
+				Prioridade: <h:selectOneMenu value="">
 								<f:selectItem itemValue="Muito Alta" />
 								<f:selectItem itemValue="Alta"  />
 								<f:selectItem itemValue="Baixa" />
@@ -23,11 +23,11 @@
 							</h:selectOneMenu>
 							<h:message for="prioridade" /><br />
 				Estimativa de Horas: <h:inputText label="estimavaHoras" value="#{tarefaController.tarefa.estimavaHoras}" required="true" requiredMessage="*"/><br/>
-				Projeto: <h:selectOneMenu value="#{projeto.id}" id="projeto">
-							<f:selectItems value="#{projetoController.projetos}" />
+				Projeto: <h:selectOneMenu id="projeto" value="#{tarefaController.tarefa.projeto}">
+							<f:selectItems itemLabel="#{prj.titulo}" value="#{projetoController.projetos}" var="prj"/>
 						</h:selectOneMenu> 
 						<h:message for="projeto" /><br />
-				<h:commandButton action="#{tarefaController.salvarTarefa()}" value="Salvar"   /><br/>
+				<h:commandButton action="#{tarefaController.salvarTarefa()}" value="Salvar" /><br/>
 				<h:button value="Voltar" action="cancelar" immediate="true" outcome="paginalogada" ></h:button><br/>
 			</h:form>
       </ui:define>
