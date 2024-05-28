@@ -5,16 +5,13 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-import javax.annotation.Resource;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
-import br.com.crud.desafio.dao.GenericDao;
+import br.com.crud.desafio.dao.ProjetoDao;
 import br.com.crud.desafio.entity.Projeto;
 
 @ManagedBean
@@ -30,23 +27,16 @@ public class ProjetoController extends SpringBeanAutowiringSupport implements Se
 	private List<Projeto> projetos;
 	
 	@Autowired
-	private GenericDao<Projeto, Integer> projetoDao;
+	private ProjetoDao projetoDao;
 	
 	public ProjetoController() {
 		projeto = new Projeto();
-	}
-
-	public ProjetoController(Projeto projeto, GenericDao<Projeto, Integer> projetoDao) {
-		super();
-		this.projeto = projeto;
-		this.projetoDao = projetoDao;
 	}
 	
 	public String cadastrarProjetoIndex() {
 		projeto = new Projeto();
 		return "cadastrarProjeto";
 	}
-	
 	public String editProjeto(Projeto projeto) {
 		this.projeto = new Projeto();
 		this.projeto = projetoDao.getById(projeto.getId());
@@ -69,20 +59,16 @@ public class ProjetoController extends SpringBeanAutowiringSupport implements Se
 		Calendar dataCorrente = Calendar.getInstance();
 		this.projeto.setTitulo(projeto.getTitulo());
 		this.projeto.setDescricao(projeto.getDescricao());
-		this.projeto.setCreateDate(projeto.getCreateDate());
-		this.projeto.setDataInicio(projeto.getDataInicio());
-		this.projeto.setTarefas(projeto.getTarefas());
 		this.projeto.setUpdateDate(dataCorrente.getTime());
 		projetoDao.update(this.projeto);
-		
-		return "listaProjetos";
+		return "listarProjetos";
 	}
 	
 	public String excluirProjeto(Projeto projeto) {
 		this.projeto.setId(projeto.getId());
 		projetoDao.delete(this.projeto);
 		
-		return "listaProjetos";
+		return "listarProjetos";
 	}
 	
 	public List<Projeto> getProjetos() {

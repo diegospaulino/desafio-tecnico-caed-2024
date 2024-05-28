@@ -28,7 +28,7 @@
   </context-param>
     
   <welcome-file-list>
-    <welcome-file>index.xhtml</welcome-file>
+    <welcome-file>paginalogada.xhtml</welcome-file>
   </welcome-file-list>
   
   <servlet>

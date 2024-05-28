@@ -5,24 +5,14 @@
       xmlns:ui="http://java.sun.com/jsf/facelets" 
       xmlns:a4j="http://richfaces.org/a4j" 
       xmlns:rich="http://richfaces.org/rich"> 
-	
-	<head>
-		<title><ui:insert name="paginaLogadaUsuario">Página Logada</ui:insert></title>
-	</head>
-	<body>
-		<f:view>
+      
+	<ui:composition template="/application.xhtml">
+		<ui:define name="title">Página Logada</ui:define>
+		<ui:define name="content">
 			<h:form id="paginaLogada">
-				Seja Bem Vindo ao sistema de projetos, usuário!<br/>
-				Selecione as opções abaixo que deseje realizar no sistema:<br/>
-				<h:button value="Cadastrar Projeto" outcome="cadastrarProjeto" ></h:button><br/>
-				<h:button value="Listar Projetos" outcome="listarProjetos" ></h:button><br/>
-				<h:button value="Cadastrar Tarefa" outcome="cadastrarTarefa" ></h:button><br/>
-				<h:button value="Listar Tarefas" outcome="listarTarefas" ></h:button><br/>
-				<br/>
-				<h:button value="Logoff" outcome="index" ></h:button><br/>
-				
+				<h3>Seja Bem Vindo ao sistema de projetos, usuário!<br/></h3>
+				<h4>Selecione as opções abaixo que deseje realizar no sistema:<br/></h4>
 			</h:form>
-		</f:view>
-	</body>
-	
+		</ui:define>
+	</ui:composition>
 </html>

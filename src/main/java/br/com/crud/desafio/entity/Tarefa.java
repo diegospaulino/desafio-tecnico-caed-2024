@@ -27,7 +27,7 @@ public class Tarefa extends BaseEntity{
 	private PrioridadeEnum prioridade;
 	
 	@Column(name="estimativa_horas")
-	private Integer estimavaHoras;
+	private Integer estimativaHoras;
 	
 	@ManyToOne
 	private Projeto projeto;
@@ -56,12 +56,12 @@ public class Tarefa extends BaseEntity{
 		this.prioridade = prioridade;
 	}
 
-	public Integer getEstimavaHoras() {
-		return estimavaHoras;
+	public Integer getEstimativaHoras() {
+		return estimativaHoras;
 	}
 
-	public void setEstimavaHoras(Integer estimavaHoras) {
-		this.estimavaHoras = estimavaHoras;
+	public void setEstimativaHoras(Integer estimativaHoras) {
+		this.estimativaHoras = estimativaHoras;
 	}
 
 	public Projeto getProjeto() {
@@ -71,7 +71,4 @@ public class Tarefa extends BaseEntity{
 	public void setProjeto(Projeto projeto) {
 		this.projeto = projeto;
 	}
-	
-	
-
 }

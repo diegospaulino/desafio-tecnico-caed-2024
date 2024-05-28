@@ -14,7 +14,7 @@
 			<h3>Abaixo a listagem com todas das tarefas cadastradas: </h3><br/>
 			
 			<h:form rendered="#{not empty tarefaController.tarefas}">
-				<h:dataTable border="1" var="trf" value="#{tarefaController.tarefas}" style="width: 396px">
+				<h:dataTable border="1" var="trf" value="#{tarefaController.tarefas}" style="width: 600px">
 					<h:column id="column1"> 
 						<f:facet name="header">Título</f:facet>
 						#{trf.titulo}
@@ -36,15 +36,12 @@
 						#{trf.projeto.titulo}
 					</h:column>
 					<h:column>
-						<f:facet name="header">Atualizar</f:facet>	
-						#{tarefaController.editTarefa(trf.id)}
-					</h:column>
-					<h:column>
-						<f:facet name="header">Excluir</f:facet>
-						#{tarefaController.excluirTarefa(trf.id)}	
+						<f:facet name="header">Opções</f:facet>	
+							<h:button action="#{tarefaController.editTarefaById(trf.id)}" outcome="cadastrarTarefa" value="Atualizar" />
+							<h:commandButton action="#{tarefaController.excluirTarefaById(trf.id)}" value="Excluir" />
 					</h:column>
 				</h:dataTable>
-			
+				<h:button value="Voltar" action="voltar" immediate="true" outcome="paginalogada" ></h:button><br/>
 			</h:form>
 		</ui:define>
 	</ui:composition>  

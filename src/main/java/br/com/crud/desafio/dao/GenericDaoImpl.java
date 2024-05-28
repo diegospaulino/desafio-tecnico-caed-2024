@@ -68,6 +68,9 @@ public class GenericDaoImpl<T, ID extends Serializable> implements GenericDao<T,
 
 	@Override
 	public T getById(Long id) {
+		if(entityManager == null) {
+			throw new IllegalStateException("Erro em " + objectClass.getSimpleName() + "!");
+		}
 		return (T) entityManager.find(objectClass, id);
 	}
 }
