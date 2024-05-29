@@ -10,20 +10,20 @@
 	      <ui:define name="title">Atualizar Tarefa</ui:define>
 	      <ui:define name="content">
 	      
-	      	<h:form id="cadastrarTarefa_edit">
+	      	<h:form id="cadastrarTarefa_edit" rendered="#{not empty tarefaController.tarefa}">
 	      		<h3>Preencha os campos abaixo para cadastrar nova tarefa: </h3><br/>
-					Título: <h:inputText label="titulo" value="#{tarefa}" required="true" requiredMessage="*"/><br/>
-					Descrição: <h:inputText label="descricao" value="#{tarefa.descricao}" required="true" requiredMessage="*"/><br/>
-					Prioridade: <h:selectOneMenu value="#{tarefa.prioridade}">
+					Título: <h:inputText label="titulo" value="#{tarefaController.tarefa.titulo}" required="true" requiredMessage="*"/><br/>
+					Descrição: <h:inputText label="descricao" value="#{tarefaController.tarefa.descricao}" required="true" requiredMessage="*"/><br/>
+					Prioridade: <h:selectOneMenu value="#{tarefaController.tarefa.prioridade}">
 									<f:selectItems value="#{tarefaController.listarPrioridades()}" />
 								</h:selectOneMenu>
 								<h:message for="prioridade" /><br />
-					Estimativa de Horas: <h:inputText label="estimativaHoras" value="#{tarefa.estimativaHoras}" required="true" requiredMessage="*"/><br/>
-					Projeto: <h:selectOneMenu value="#{tarefa.projeto.id}" id="projeto">
+					Estimativa de Horas: <h:inputText label="estimativaHoras" value="#{tarefaController.tarefa.estimativaHoras}" required="true" requiredMessage="*"/><br/>
+					Projeto: <h:selectOneMenu value="#{tarefaController.tarefa.projeto.id}" id="projeto">
 								<f:selectItems value="#{tarefaController.listarProjetos()}" />
 							</h:selectOneMenu> 
 							<h:message for="projeto" /><br />
-					<h:commandButton id="submit" action="#{tarefaController.salvarTarefa()}" value="Salvar" />
+					<h:commandButton id="submit" action="#{tarefaController.atualizarTarefa(tarefaController.tarefa)}" value="Salvar" />
 					<h:button value="Voltar" action="cancelar" immediate="true" outcome="paginalogada" ></h:button><br/>
 				</h:form>
 	      </ui:define>

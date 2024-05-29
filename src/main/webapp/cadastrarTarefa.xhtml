@@ -20,7 +20,7 @@
 							</h:selectOneMenu>
 							<h:message for="prioridade" /><br />
 				Estimativa de Horas: <h:inputText label="estimativaHoras" value="#{tarefaController.tarefa.estimativaHoras}" required="true" requiredMessage="*"/><br/>
-				Projeto: <h:selectOneMenu value="#{tarefaController.projeto.id}" id="projeto">
+				Projeto: <h:selectOneMenu value="#{tarefaController.tarefa.projeto.id}" id="projeto">
 							<f:selectItems value="#{tarefaController.listarProjetos()}" />
 						</h:selectOneMenu> 
 						<h:message for="projeto" /><br />

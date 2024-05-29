@@ -37,7 +37,7 @@
 					</h:column>
 					<h:column >
 						<f:facet name="header">Opções</f:facet>	
-							<h:button action="#{tarefaController.editTarefa(trf)}" outcome="cadastrarTarefa_edit" value="Atualizar" />
+							<h:commandButton action="#{tarefaController.editTarefa(trf)}" value="Atualizar" />
 							<h:commandButton action="#{tarefaController.excluirTarefaById(trf.id)}" value="Excluir" />
 					</h:column>
 				</h:dataTable>

@@ -22,17 +22,17 @@ public class testTarefaDao {
 	
 	private Tarefa getTarefa() {
 		Tarefa tarefa = new Tarefa();
-		tarefa.setDescricao("Teste");
+		tarefa.setDescricao("Tarefa 1");
 		return tarefa;
 	}
 
 	@Test
 	public void testUpdate() {
 		Tarefa tarefa = tarefaDao.getById(id);
-		tarefa.setDescricao("Teste 2");
+		tarefa.setDescricao("Tarefa 2");
 		tarefa = tarefaDao.update(tarefa);
 		assertNotNull(tarefa);
-		assertEquals("Teste 2", tarefa.getDescricao());
+		assertEquals("Tarefa 2", tarefa.getDescricao());
 	}
 
 	@Test
@@ -47,7 +47,7 @@ public class testTarefaDao {
 		Tarefa tarefa = tarefaDao.getById(id);
 		assertNotNull(tarefa);
 		assertEquals(id, tarefa.getId());
-		assertEquals("Teste", tarefa.getDescricao());
+		assertEquals("Tarefa 1", tarefa.getDescricao());
 	}
 
 	@Test
@@ -56,7 +56,7 @@ public class testTarefaDao {
 		tarefa = tarefaDao.save(getTarefa());
 		assertNotNull(tarefa);
 		assertEquals(id, tarefa.getId());
-		assertEquals("Teste", tarefa.getDescricao());
+		assertEquals("Tarefa 1", tarefa.getDescricao());
 	}
 
 	@Test
@@ -64,7 +64,7 @@ public class testTarefaDao {
 		List<Tarefa> tarefas = tarefaDao.getAll();
 		assertNotNull(tarefas);
 		assertEquals(1, tarefas.size());
-		assertEquals("Teste 2", tarefas.get(0).getDescricao());
+		assertEquals("Tarefa 2", tarefas.get(0).getDescricao());
 	}
 
 }

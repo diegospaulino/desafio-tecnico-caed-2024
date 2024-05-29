@@ -28,7 +28,6 @@ public class TarefaController extends SpringBeanAutowiringSupport implements Ser
 	private static final long serialVersionUID = 1L;
 
 	private Tarefa tarefa;
-	private Projeto projeto;
 	private List<Tarefa> tarefas;
 	private List<SelectItem> listaProjeto;
 	
@@ -40,13 +39,8 @@ public class TarefaController extends SpringBeanAutowiringSupport implements Ser
 	
 	public TarefaController() {
 		tarefa = new Tarefa();
-		projeto = new Projeto();
-	}
-   
-	public TarefaController(Tarefa tarefa, GenericDao<Tarefa, Integer> tarefaDao) {
-		super();
-		this.tarefa = tarefa;
-		this.tarefaDao = tarefaDao;
+		Projeto projeto = new Projeto();
+		tarefa.setProjeto(projeto);
 	}
 	
 	public String formTarefa() {
@@ -57,6 +51,14 @@ public class TarefaController extends SpringBeanAutowiringSupport implements Ser
 	public Tarefa getTarefa(Tarefa tarefa) {
 		Tarefa trf = tarefaDao.getById(tarefa.getId());
 		return trf;
+	}
+	
+	public String cadastrarTarefaIndex() {
+		this.tarefa = new Tarefa();
+		Projeto projeto = new Projeto();
+		tarefa.setProjeto(projeto);
+		
+		return "cadastrarTarefa";
 	}
 	
 	public String editTarefa(Tarefa tarefa) {
@@ -71,28 +73,53 @@ public class TarefaController extends SpringBeanAutowiringSupport implements Ser
 		trf = getTarefa(trf);
 	}
 	
-	public void salvarTarefa() {
+	public String atualizarTarefa(Tarefa tarefa) {
+		Calendar dataCorrente = Calendar.getInstance();
+		Tarefa trf = new Tarefa();
+		
+		trf = tarefaDao.getById(tarefa.getId());
+		trf.setTitulo(tarefa.getTitulo());
+		trf.setDescricao(tarefa.getDescricao());
+		trf.setEstimativaHoras(tarefa.getEstimativaHoras());
+		trf.setPrioridade(tarefa.getPrioridade());
+		trf.setCreateDate(dataCorrente.getTime());
+		
+		Projeto prj = new Projeto();
+		if(!tarefa.getProjeto().equals(null) && !tarefa.getProjeto().getId().equals(null)) {
+			prj = projetoDao.getById(tarefa.getProjeto().getId());
+		}
+		trf.setProjeto(prj);
+		
+		tarefaDao.update(trf);
+		return "listarTarefas";
+	}
+	
+	public String salvarTarefa() {
 		Calendar dataCorrente = Calendar.getInstance();
 		
-		Tarefa t = new Tarefa();;
+		Tarefa trf = new Tarefa();;
 	
-		t.setTitulo(tarefa.getTitulo());
-		t.setDescricao(tarefa.getDescricao());
-		t.setEstimativaHoras(tarefa.getEstimativaHoras());
-		t.setPrioridade(tarefa.getPrioridade());
+		trf.setTitulo(tarefa.getTitulo());
+		trf.setDescricao(tarefa.getDescricao());
+		trf.setEstimativaHoras(tarefa.getEstimativaHoras());
+		trf.setPrioridade(tarefa.getPrioridade());
 		
 		
 		Projeto prj = new Projeto();
-		prj = projetoDao.getById(projeto.getId());
-		t.setProjeto(prj);
+		if(!tarefa.getProjeto().equals(null) && !tarefa.getProjeto().getId().equals(null)) {
+			prj = projetoDao.getById(tarefa.getProjeto().getId());
+		}
+		trf.setProjeto(prj);
 		
-		t.setCreateDate(dataCorrente.getTime());
-		tarefaDao.save(t);
+		trf.setCreateDate(dataCorrente.getTime());
+		tarefaDao.save(trf);
+		return "listarTarefas";
 	}
 	
-	public void excluirTarefa(Tarefa tarefa) {
+	public String excluirTarefa(Tarefa tarefa) {
 		Tarefa trf = getTarefa(tarefa);
 		tarefaDao.delete(trf);
+		return "listarTarefas";
 	}
 	
 	public void excluirTarefaById(Long id) {
@@ -120,6 +147,7 @@ public class TarefaController extends SpringBeanAutowiringSupport implements Ser
 		this.tarefa = tarefa;
 	}
 	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public List<SelectItem> listarProjetos() {
 		List<Projeto> projetos  = projetoDao.getAll();
 		listaProjeto = new ArrayList();
@@ -135,13 +163,4 @@ public class TarefaController extends SpringBeanAutowiringSupport implements Ser
 		return PrioridadeEnum.values();
 		
 	}
-
-	public Projeto getProjeto() {
-		return projeto;
-	}
-
-	public void setProjeto(Projeto projeto) {
-		this.projeto = projeto;
-	}
-	
 }

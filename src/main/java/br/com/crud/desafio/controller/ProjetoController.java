@@ -57,15 +57,17 @@ public class ProjetoController extends SpringBeanAutowiringSupport implements Se
 		prj.setDescricao(projeto.getDescricao());
 		projetoDao.save(prj);
 		
-		return "listaProjetos";
+		return "listarProjetos";
 	}
 	
 	public String atualizarProjeto(Projeto projeto) {
 		Calendar dataCorrente = Calendar.getInstance();
-		this.projeto.setTitulo(projeto.getTitulo());
-		this.projeto.setDescricao(projeto.getDescricao());
-		this.projeto.setUpdateDate(dataCorrente.getTime());
-		projetoDao.update(this.projeto);
+		Projeto prj = new Projeto();
+		prj = projetoDao.getById(projeto.getId());
+		prj.setTitulo(projeto.getTitulo());
+		prj.setDescricao(projeto.getDescricao());
+		prj.setUpdateDate(dataCorrente.getTime());
+		projetoDao.update(prj);
 		return "listarProjetos";
 	}
 	

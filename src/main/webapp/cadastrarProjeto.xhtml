@@ -15,7 +15,7 @@
 				<h3>Preencha os campos abaixo para cadastrar novo projeto: </h3><br/>
 				Título: <h:inputText label="titulo" value="#{projetoController.projeto.titulo}" required="true" requiredMessage="*"/><br/>
 				Descrição: <h:inputText label="descricao" value="#{projetoController.projeto.descricao}" required="true" requiredMessage="*"/><br/>
-				<h:commandButton action="#{projetoController.salvarProjeto()}" value="Salvar" />
+				<h:commandButton action="#{projetoController.salvarProjeto()}" value="Salvar"  />
 				<h:button value="Voltar" action="cancelar" immediate="true" outcome="paginalogada" ></h:button><br/>
 			</h:form>
 		</ui:define>

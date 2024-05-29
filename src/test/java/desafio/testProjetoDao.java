@@ -22,17 +22,17 @@ public class testProjetoDao {
 	
 	private Projeto getProjeto() {
 		Projeto projeto = new Projeto();
-		projeto.setTitulo("Teste");
+		projeto.setTitulo("Projeto 1");
 		return projeto;
 	}
 
 	@Test
 	public void testUpdate() {
 		Projeto projeto = projetoDao.getById(id);
-		projeto.setTitulo("Teste 2");
+		projeto.setTitulo("Projeto 2");
 		projeto = projetoDao.update(projeto);
 		assertNotNull(projeto);
-		assertEquals("Teste 2", projeto.getTitulo());
+		assertEquals("Projeto 2", projeto.getTitulo());
 	}
 
 	@Test
@@ -47,7 +47,7 @@ public class testProjetoDao {
 		Projeto projeto = projetoDao.getById(id);
 		assertNotNull(projeto);
 		assertEquals(id, projeto.getId());
-		assertEquals("Teste", projeto.getTitulo());
+		assertEquals("Projeto 1", projeto.getTitulo());
 	}
 
 	@Test
@@ -56,7 +56,7 @@ public class testProjetoDao {
 		projeto = projetoDao.save(getProjeto());
 		assertNotNull(projeto);
 		assertEquals(id, projeto.getId());
-		assertEquals("Teste", projeto.getTitulo());
+		assertEquals("Projeto 1", projeto.getTitulo());
 	}
 
 	@Test
@@ -64,7 +64,7 @@ public class testProjetoDao {
 		List<Projeto> projetos = projetoDao.getAll();
 		assertNotNull(projetos);
 		assertEquals(1, projetos.size());
-		assertEquals("Teste 2", projetos.get(0).getTitulo());
+		assertEquals("Projeto 2", projetos.get(0).getTitulo());
 	}
 
 }

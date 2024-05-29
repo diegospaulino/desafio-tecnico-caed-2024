@@ -10,11 +10,11 @@
 		<ui:define name="title">Atualizar Projeto</ui:define>
 		<ui:define name="content">
 		
-			<h:form id="cadastrarProjeto_edit" rendered="#{not empty projeto}" >
+			<h:form id="cadastrarProjeto_edit" rendered="#{not empty projetoController.projeto}" >
 				<h3>Preencha os campos abaixo para atualizar projeto: </h3><br/>
-				Título: <h:inputText value="#{projeto.titulo}" required="true" requiredMessage="*" /><br/>
-				Descrição: <h:inputText label="descricao" value="#{projeto.descricao}" required="true" requiredMessage="*"/><br/>
-				<h:commandButton action="#{projetoController.atualizarProjeto(projeto)}" value="Salvar" />
+				Título: <h:inputText value="#{projetoController.projeto.titulo}" required="true" requiredMessage="*" /><br/>
+				Descrição: <h:inputText label="descricao" value="#{projetoController.projeto.descricao}" required="true" requiredMessage="*"/><br/>
+				<h:commandButton action="#{projetoController.atualizarProjeto(projetoController.projeto)}" value="Salvar" />
 				<h:button value="Voltar" action="cancelar" immediate="true" outcome="listarProjetos" ></h:button><br/>
 			</h:form>
 		</ui:define>
